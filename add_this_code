@@ -1,0 +1,50 @@
+
+             function captcha()
+             {
+                ?> 	
+            							              
+                                        <b>Verification<font color="#FF3333"> *</font></b> 
+                                        <p>&nbsp;Type the code given below:</p>
+                                        
+                                         <p>  <img src="<?= SITE_PATH;?>captcha"></p> 
+                                        <input type="number" name="input" id="inp" required>
+                                        <div style='margin-bottom:5px'>
+                                    		<?php echo $msg; ?>
+                                    	
+                                    		<div>
+                                        		Can't read the image? Click
+                                        		<a href='<?php echo $_SERVER['PHP_SELF']; ?>'>
+                                        			here
+                                        		</a>
+                                        		to refresh!
+                                        	</div>
+            			      
+                                    	</div>
+            <?php
+             }
+             
+             
+              function captcha_validation()
+             {
+                        $msg = '';
+            
+                    // If user has given a captcha!
+                        if (isset($_POST['input']) > 0)
+                        
+                        {
+                             $ic=$_POST['input'];
+                             $cp=$_SESSION['captcha'];
+                        
+                            if($ic!=$cp)
+                            {
+                                 $page= ltrim($_SERVER['PHP_SELF'],"/");
+                                	echo "<script>alert('Please Enter Correct Captcha');window.location='".SITE_PATH.$page."'</script>";
+                                	
+                            }
+                            
+                        
+                        }
+                
+             }
+             
+             
